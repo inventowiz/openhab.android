@@ -101,6 +101,10 @@ import de.duenndns.ssl.MTMDecision;
 import de.duenndns.ssl.MemorizingResponder;
 import de.duenndns.ssl.MemorizingTrustManager;
 
+// Applink
+import org.openhab.habdroid.R;
+import org.openhab.habdroid.applink.AppLinkActivity;
+
 public class OpenHABMainActivity extends ActionBarActivity implements OnWidgetSelectedListener,
         OpenHABTrackerReceiver, MemorizingResponder {
     public static final String GCM_SENDER_ID = "737820980945";
@@ -187,6 +191,7 @@ public class OpenHABMainActivity extends ActionBarActivity implements OnWidgetSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate()");
+
         // Check if we are in development mode
         isDeveloper = false;
         // Set default values, false means do it one time during the very first launch
@@ -231,6 +236,16 @@ public class OpenHABMainActivity extends ActionBarActivity implements OnWidgetSe
         mProgressBar = (ProgressBar) toolbar.findViewById(R.id.toolbar_progress_bar);
         mProgressBar.setLayoutParams(new Toolbar.LayoutParams(Gravity.RIGHT));
         startProgressIndicator();
+
+        /**
+         * Use Applink service and begin.
+         */
+        HABDroid app = HABDroid.getInstance();
+        if (app != null) {
+            app.startSyncProxyService();
+        }
+
+        // Continue with openHAB
         gcmRegisterBackground();
         // Enable app icon in action bar work as 'home'
 //        this.getActionBar().setHomeButtonEnabled(true);
