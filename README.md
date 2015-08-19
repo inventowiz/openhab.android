@@ -1,3 +1,6 @@
+### Note:
+This is a work-in-progress. Adding Ford Applink integration into HABdroid for personal use. This will enable the user to control the HABDroid application from within their Applink-enabled vehicle. I do not intend to file a pull request, or create a feature issue. 
+
 ## Introduction
 
 openHAB Android application is a native client for openHAB. It uses REST API of openHAB to render
